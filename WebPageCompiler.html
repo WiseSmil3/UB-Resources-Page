@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Creator</title>
+</head>
+<body>
+    <h1>Create Content</h1>
+    
+    <div id="content-blocks"></div>
+
+    <button onclick="addContentBlock()">Add Content Block</button>
+    <button onclick="exportHTML()">Export HTML</button>
+
+    <h2>Generated HTML:</h2>
+    <textarea id="generated-html" rows="10" cols="50" readonly></textarea>
+
+    <script>
+        function addContentBlock() {
+            var contentBlocks = document.getElementById('content-blocks');
+            var block = document.createElement('div');
+            block.innerHTML = `
+                <label for="heading">Heading:</label>
+                <input type="text" class="heading" placeholder="Enter a heading">
+                <br>
+                <label for="plain-text">Plain Text:</label>
+                <textarea class="plain-text" rows="4" cols="50" placeholder="Enter plain text"></textarea>
+                <br>
+                <label for="link-text">Link Text:</label>
+                <input type="text" class="link-text" placeholder="Enter link text">
+                <label for="link-url">Link URL:</label>
+                <input type="text" class="link-url" placeholder="Enter link URL">
+                <br>
+                <label for="image-url">Image URL:</label>
+                <input type="text" class="image-url" placeholder="Enter image URL">
+                <br><br>
+            `;
+            contentBlocks.appendChild(block);
+        }
+
+        function exportHTML() {
+            var headings = document.getElementsByClassName('heading');
+            var plainTexts = document.getElementsByClassName('plain-text');
+            var linkTexts = document.getElementsByClassName('link-text');
+            var linkUrls = document.getElementsByClassName('link-url');
+            var imageUrls = document.getElementsByClassName('image-url');
+
+            var htmlContent = '';
+            for (var i = 0; i < headings.length; i++) {
+                if (headings[i].value) htmlContent += '<h2>' + headings[i].value + '</h2>\n';
+                if (plainTexts[i].value) htmlContent += '<p>' + plainTexts[i].value + '</p>\n';
+                if (linkTexts[i].value && linkUrls[i].value) htmlContent += '<a href="' + linkUrls[i].value + '">' + linkTexts[i].value + '</a><br>\n'; // Added line break
+                if (imageUrls[i].value) htmlContent += '<img src="' + imageUrls[i].value + '" alt="Image">\n';
+            }
+
+            document.getElementById('generated-html').value = htmlContent;
+        }
+
+        // Add the first content block by default
+        addContentBlock();
+    </script>
+</body>
+</html>
