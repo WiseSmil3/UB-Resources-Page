@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Urantia Book Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle at center, #dcdcdc, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff);
+            background-attachment: fixed;
+            background-size: 100%;
+            background-position: center center; /* Center the background */
+            color: #f4f4f4;
+            margin: 20px;
+            transition: background-size 0.3s ease; /* Smooth transition for zoom effect */
+        }
+        .container {
+            max-width: 80%;
+            margin-left: auto; /* Center the container */
+            margin-right: auto;
+        }
+        .content-container {
+            padding: 20px; /* Equal padding on all sides */
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+	h1 {
+            color: #000;
+            margin-bottom: 20px; /* Spacing between the title and the suggestion box */
+        }
+        h2 {
+            color: #007bff;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        label {
+            display: block;
+            vertical-align: top;
+            padding: 5px 0; /* Padding for labels */
+        }
+	textarea {
+            width: calc(100% - 40px); /* Subtract padding */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            resize: vertical;
+        }
+        /* ... rest of the styles ... */
+    </style>
+    <script>
+        window.addEventListener('scroll', function() {
+            // Calculate the zoom effect based on scroll position
+            var zoom = 100 + window.scrollY / 10;
+            document.body.style.backgroundSize = zoom + '%';
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>The Urantia Book Resources</h1>
+        <div class="content-container">
+            <h2>Test & Ilustrations</h2>
+            <p>A simple description of the UB.</p>
+            <a href="https://urantiabooksources.com/">urantiabooksources</a><br>
+            <h2>Organizations</h2>
+            <p>Groups that support the UB.</p>
+            <a href="http://www.urantiaunited.org/">urantiaunited</a><br>
+            <h2>Images</h2>
+            <p>Diagrams and illustrations of the UB.</p>
+            <a href="https://talkitup.community-pro.de/forum/index.php?thread/111-urantia-book-illustrations/">talkitup.community-pro.de/forum/index.php?thread/111-urantia-book-illustrations</a><br>
+        </div>
+        <div class="content-container">
+            <h2>Submit Your Suggestions</h2>
+            <form action="URL_TO_HANDLE_SUBMISSIONS" method="post">
+                <label for="suggestion">Suggestion:</label>
+                <textarea id="suggestion" name="suggestion" rows="4"></textarea>
+                <br>
+                <label for="file-upload">Upload a file:</label>
+                <input type="file" id="file-upload" name="file-upload">
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
