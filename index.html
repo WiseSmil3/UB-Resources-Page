@@ -4,76 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Urantia Book Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             background: radial-gradient(circle at center, #dcdcdc, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff, #bbb, #007bff);
             background-attachment: fixed;
             background-size: 100%;
-            background-position: center center; /* Center the background */
+            background-position: center center;
             color: #f4f4f4;
-            margin: 20px;
-            transition: background-size 0.1s ease; /* Smooth transition for zoom effect */
+            margin: 0;
+            transition: background-size 0.2s ease;
         }
-	.thumbnail {
-   	    height: 100px; /* Adjust height automatically to maintain aspect ratio */
-            max-width: 100%; /* Ensure the image does not exceed the container's width */
-            display: block; /* To remove any extra space around the image */
-	    margin: 0 auto; /* Center the thumbnail images */
-	}
-        .container {
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #000;
+            padding: 5px 0;
+            z-index: 1000;
+            border-radius: 0px;
+            font-size: 10px;
+        }
+
+        .navbar-bottom {
+            bottom: 0;
+            top: auto;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 40px;
+        }
+
+        .navbar a {
+            position: relative;
+            color: #f4f4f4;
+            text-decoration: none;
+            padding: 10px; /* Increased padding */
+            margin: 0 0px; /* Added margin */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .navbar a .tooltip {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f4f4f4;
+            color: #000;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .navbar-bottom a .tooltip {
+            top: auto;
+            bottom: 100%;
+        }
+
+        .navbar a:hover .tooltip {
+            display: block;
+        }
+
+        .navbar a i {
+            font-size: 20px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar {
+                bottom: 0;
+                top: auto;
+            }
+        }
+        .thumbnail {
+            height: 100px;
             max-width: 100%;
-            margin-left: auto; /* Center the container */
-            margin-right: auto;
+            display: block;
+            margin: 0 auto;
         }
-       .content-container {
-  	    padding: 15px; /* Equal padding on all sides */
-   	    background-color: rgba(0, 0, 0, 0.5);
-   	    border-radius: 20px;
-   	    box-shadow: 0 0 20px rgba(255, 255, 255, 100);
-   	    margin-bottom: 20px;
-   	    overflow: hidden;
-   	    text-align: center; /* Center the content inside the container */
-	}
 
-	a {
-    	    color: #ffdac4;
-    	    text-decoration: none;
-    	    display: block; /* Display links as block elements to center them */
-	}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 15px 60px 15px;
+        }
 
-	a:hover {
-    	    text-decoration: underline;
-	}
+        .content-container {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 200);
+            margin-bottom: 20px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        a {
+            color: #ffdac4;
+            text-decoration: none;
+            display: block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
 
         label {
             display: block;
             vertical-align: top;
-            padding: 5px 0; /* Padding for labels */
+            padding: 5px 0;
         }
-	textarea {
-            width: calc(100% - 40px); /* Subtract padding */
+
+        textarea {
+            width: calc(100% - 40px);
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
             resize: vertical;
         }
-        /* ... rest of the styles ... */
     </style>
     <script>
-        window.addEventListener('scroll', function() {
-            // Calculate the zoom effect based on scroll position
-            var zoom = 100 + window.scrollY / 15;
+        window.addEventListener('scroll', function () {
+            var scrollY = window.scrollY;
+            var zoom = 100 + Math.log(1 + scrollY / 100) * 40; // Adjusted the zoom calculation
             document.body.style.backgroundSize = zoom + '%';
+        });
+
+        window.addEventListener('resize', function () {
+            var navbar = document.querySelector('.navbar');
+            if (window.innerWidth <= 600) {
+                navbar.classList.add('navbar-bottom');
+            } else {
+                navbar.classList.remove('navbar-bottom');
+            }
         });
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>The Urantia Book Resources</h1>
-        <div class="content-container">
-        	<h2>Text & Documentations</h2>
-<br>
+<div class="navbar">
+    <div class="navbar-container">
+        <a href="#Text_and_Documentations" class="nav-link"><i class="fas fa-book"></i><span class="tooltip">Text & Documentations</span></a>
+        <a href="#Images_and_Illustrations" class="nav-link"><i class="fas fa-image"></i><span class="tooltip">Images & Illustrations</span></a>
+        <a href="#Videos_and_Films" class="nav-link"><i class="fas fa-film"></i><span class="tooltip">Videos & Films</span></a>
+        <a href="#Music_and_Audio" class="nav-link"><i class="fas fa-music"></i><span class="tooltip">Music & Audio</span></a>
+        <a href="#Education_and_Courses" class="nav-link"><i class="fas fa-graduation-cap"></i><span class="tooltip">Education & Courses</span></a>
+        <a href="#Organizations" class="nav-link"><i class="fas fa-building"></i><span class="tooltip">Organizations</span></a>
+        <a href="#Events_and_Communitys" class="nav-link"><i class="fas fa-calendar-alt"></i><span class="tooltip">Events & Communitys</span></a>
+        <a href="#Material_Projects_and_Products" class="nav-link"><i class="fas fa-industry"></i><span class="tooltip">Material Projects & Products</span></a>
+        <a href="#Submit_Your_Suggestions" class="nav-link"><i class="fas fa-comment-dots"></i><span class="tooltip">Submit Your Suggestions</span></a>
+    </div>
+</div><div class="container">
+    <h1>The Urantia Book Resources</h1>
+    <div class="content-container" id="Text_and_Documentations">
+        <h2>Text & Documentations</h2>
+       <br>
 <br>
 <img src="https://ubannotated.com/wp-content/uploads/2018/06/UBtheNEWS-banner-672x99.jpg" alt="Image" class="thumbnail">
 <a href="https://ubannotated.com/ubthenews/">https://ubannotated.com/ubthenews/</a>
@@ -125,49 +224,44 @@
 <p>Topical And Doctrinal Studies.</p>
 <br>
 <br>
-</div>
-<div class="content-container">
-<h2>Organizations</h2>
+    </div>
+    <div class="content-container" id="Images_and_Illustrations">
+        <h2>Images & Illustrations</h2>
 <br>
 <br>
-<img src="https://www.urantiaunited.org/images/header.jpg" alt="Image" class="thumbnail">
-<a href="http://www.urantiaunited.org/">http://www.urantiaunited.org/</a>
-<p>The purpose of Urantia United is to serve as a gateway to four major organizations which are united in the goal of bringing The Urantia Book and its teachings to the world.</p>
+<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.urantia.org%2Fsites%2Fdefault%2Ffiles%2Fimages%2Fgallery%2F2011-the-urantia-book-boxed-leather-blue.png&f=1&nofb=1&ipt=fb6fd58a98fb021862476732c03c6c5cd49edd65b79393ac6602f52b0552f751&ipo=images" alt="Image" class="thumbnail">
+<a href="https://ubannotated.com/wp-content/uploads/2021/06/Timeline20210625.pdf">https://ubannotated.com/wp-content/uploads/2021/06/Timeline20210625.pdf</a>
+<p>NEW DISCOVERIES CORROBORATING THE URANTIA BOOK (Interactive).</p>
 <br>
 <br>
-<img src="https://urantia-association.org/wp-content/themes/urantia/images/logo.png" alt="Image" class="thumbnail">
-<a href="https://urantia-association.org/">https://urantia-association.org/</a>
-<p>We’re an international group of students of The Urantia Book, inspired by its teachings to strive for new levels of enlightened living and service. We believe the spiritual regeneration of each individual can lead to the social transformations necessary for lasting world peace.</p>
+<img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic-1.ivoox.com%2Faudios%2F8%2F9%2F2%2F0%2F6541480910298_XXL.jpg&f=1&nofb=1&ipt=d4711d4b306e3385155e1467b2184e6743224ec7e909c471486b68b94c9d9793&ipo=images" alt="Image" class="thumbnail">
+<a href="https://www.universalfather.info/">https://www.universalfather.info/</a>
+<p>Paradise Cosmology Chart (Interactive).</p>
 <br>
 <br>
-<img src="https://www.urantia.org/sites/all/themes/yp_urantia_responsive/images/bg-banner.png" alt="Image" class="thumbnail">
-<a href="https://www.urantia.org/">https://www.urantia.org/</a>
-<p>Custodians of The Urantia Book since 1955.</p>
+<img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic-1.ivoox.com%2Faudios%2F8%2F9%2F2%2F0%2F6541480910298_XXL.jpg&f=1&nofb=1&ipt=d4711d4b306e3385155e1467b2184e6743224ec7e909c471486b68b94c9d9793&ipo=images" alt="Image" class="thumbnail">
+<a href="https://www.orvonton.info/">https://www.orvonton.info/</a>
+<p>Orvonton Cosmology Chart (Interactive).</p>
 <br>
 <br>
-<img src="https://truthbook.com/wp-content/uploads/2021/05/TruthbookLogoRightWhite594x119.png" alt="Image" class="thumbnail">
-<a href="https://truthbook.com">https://truthbook.com</a>
-<p>Our mission is to encourage and assist individuals in developing a personal faith relationship with our Heavenly Father by sharing the supernal teachings of Jesus in The Urantia Book with them and nurturing them as believers.</p>
+<img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic-1.ivoox.com%2Faudios%2F8%2F9%2F2%2F0%2F6541480910298_XXL.jpg&f=1&nofb=1&ipt=d4711d4b306e3385155e1467b2184e6743224ec7e909c471486b68b94c9d9793&ipo=images" alt="Image" class="thumbnail">
+<a href="https://www.nebadon.info/">https://www.nebadon.info/</a>
+<p>Nebadon Cosmology Chart (Interactive).</p>
 <br>
 <br>
-<img src="https://urantiabook.org/resources/images/UBFLogo-compressed.png" alt="Image" class="thumbnail">
-<a href="https://urantiabook.org/">https://urantiabook.org/</a>
-<p>To facilitate the worldwide spread of The Urantia Book and its teachings, to stimulate study, support individual spiritual growth, connect truth seekers, and ensure that reliable resources about The Urantia Book and related communities are available to people everywhere. </p>
+<img src="https://ubannotated.com/wp-content/uploads/2018/06/evolution-man-computer-1.gif" alt="Image" class="thumbnail">
+<a href="https://ubannotated.com/wp-content/uploads/2021/06/Family-Tree.pdf">https://ubannotated.com/wp-content/uploads/2021/06/Family-Tree.pdf</a>
+<p>Family Tree of Humanity.</p>
 <br>
 <br>
-<img src="https://urantia.nyc/wp-content/uploads/2017/01/usgnyLOGOx108x54blues-1.png" alt="Image" class="thumbnail">
-<a href="https://urantia.nyc/">https://urantia.nyc/</a>
-<p>Our Mission  The Urantia Society of Greater New York (USGNY) is a local, New York area based organization with a global focus and outreach effort. In addition to numerous local dissemination projects, our society has translated The Urantia Book into several languages and makes available almost 30 different language versions of the text on this website.</p>
+<img src="https://ubannotated.com/wp-content/uploads/2018/06/evolution-man-computer-1.gif" alt="Image" class="thumbnail">
+<a href="https://ubannotated.com/wp-content/uploads/2021/06/Saskia-Ape2Man.pdf">https://ubannotated.com/wp-content/uploads/2021/06/Saskia-Ape2Man.pdf</a>
+<p>From Ape to Man Pictorial Guide.</p>
 <br>
 <br>
-<img src="https://thechristexperiment.org/wp-content/uploads/2022/02/Logo-Aquafine-600x140.png" alt="Image" class="thumbnail">
-<a href="https://thechristexperiment.org/">https://thechristexperiment.org/</a>
-<p>The Christ Experiment "Uplifting the spiritual conversation".</p>
-<br>
-<br>
-</div>
-<div class="content-container">
-<h2>Images & Illustrations</h2>
+<img src="https://ubannotated.com/wp-content/uploads/2018/06/evolution-man-computer-1.gif" alt="Image" class="thumbnail">
+<a href="https://ubannotated.com/wp-content/uploads/2021/06/Saskia-ManApeRelated.pdf">https://ubannotated.com/wp-content/uploads/2021/06/Saskia-ManApeRelated.pdf</a>
+<p>How Man and the Ape Are Related.</p>
 <br>
 <br>
 <img src="https://talkitup.community-pro.de/images/style-2/pageLogoMobile.jpg" alt="Image" class="thumbnail">
@@ -195,12 +289,12 @@
 <p>An Artist's Conception of the Master Universe.</p>
 <br>
 <br>
-</div>
-<div class="content-container">
-<h2>Videos & Films</h2>
+    </div>
+    <div class="content-container" id="Videos_and_Films">
+        <h2>Videos & Films</h2>
 <br>
 <br>
-<img src="https://www.urantia-book-films.org/img/077535448-digital-data-networks-plexus-a-min.jpg" alt="Image" class="thumbnail">
+<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.AsIOVoVZjo6__ucKQKiC7AHaCc%26pid%3DApi&f=1&ipt=ba659e6f322178e8bd384f70c0ee2f5c347c521444359e4ece684624f29c1849&ipo=images" alt="Image" class="thumbnail">
 <a href="http://www.urantia-book-films.org/">http://www.urantia-book-films.org/</a>
 <p>Imagine Jesus before his death and resurrection became a religion.</p>
 <br>
@@ -330,9 +424,9 @@
 <p>Urantia Book Videos, Power Point Presentations, Reader’s Movies and More</p>
 <br>
 <br>
-</div>
-<div class="content-container">
-<h2>Music & Audio</h2>
+    </div>
+    <div class="content-container" id="Music_and_Audio">
+        <h2>Music & Audio</h2>
 <br>
 <br>
 <img src="https://d1968gvlgd19vw.cloudfront.net/urantia-radio/230725130840-URANTIA+RADIO+LOGO+W+CLOUDS.jpg" alt="Image" class="thumbnail">
@@ -449,9 +543,9 @@ cascavel, Brazil</p>
 <p>Tim McGraw - Humble And Kind (Official Video)</p>
 <br>
 <br>
-</div>
-<div class="content-container">
-<h2>Education & Courses</h2>
+    </div>
+    <div class="content-container" id="Education_and_Courses">
+        <h2>Education & Courses</h2>
 <br>
 <br>
 <img src="https://static.wixstatic.com/media/123499_2c5b0dbb4c47499ca7da2af18eba9ebf~mv2.png/v1/fill/w_183,h_183,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Original%20UUI%20Tree%20Logo_Transparent.png" alt="Image" class="thumbnail">
@@ -469,9 +563,49 @@ cascavel, Brazil</p>
 <p>Urantia Book Internet School (UBIS).</p>
 <br>
 <br>
-</div>
-<div class="content-container">
-<h2>Events & Communitys</h2>
+    </div>
+    <div class="content-container" id="Organizations">
+        <h2>Organizations</h2>
+<br>
+<br>
+<img src="https://www.urantiaunited.org/images/header.jpg" alt="Image" class="thumbnail">
+<a href="http://www.urantiaunited.org/">http://www.urantiaunited.org/</a>
+<p>The purpose of Urantia United is to serve as a gateway to four major organizations which are united in the goal of bringing The Urantia Book and its teachings to the world.</p>
+<br>
+<br>
+<img src="https://urantia-association.org/wp-content/themes/urantia/images/logo.png" alt="Image" class="thumbnail">
+<a href="https://urantia-association.org/">https://urantia-association.org/</a>
+<p>We’re an international group of students of The Urantia Book, inspired by its teachings to strive for new levels of enlightened living and service. We believe the spiritual regeneration of each individual can lead to the social transformations necessary for lasting world peace.</p>
+<br>
+<br>
+<img src="https://www.urantia.org/sites/all/themes/yp_urantia_responsive/images/bg-banner.png" alt="Image" class="thumbnail">
+<a href="https://www.urantia.org/">https://www.urantia.org/</a>
+<p>Custodians of The Urantia Book since 1955.</p>
+<br>
+<br>
+<img src="https://truthbook.com/wp-content/uploads/2021/05/TruthbookLogoRightWhite594x119.png" alt="Image" class="thumbnail">
+<a href="https://truthbook.com">https://truthbook.com</a>
+<p>Our mission is to encourage and assist individuals in developing a personal faith relationship with our Heavenly Father by sharing the supernal teachings of Jesus in The Urantia Book with them and nurturing them as believers.</p>
+<br>
+<br>
+<img src="https://urantiabook.org/resources/images/UBFLogo-compressed.png" alt="Image" class="thumbnail">
+<a href="https://urantiabook.org/">https://urantiabook.org/</a>
+<p>To facilitate the worldwide spread of The Urantia Book and its teachings, to stimulate study, support individual spiritual growth, connect truth seekers, and ensure that reliable resources about The Urantia Book and related communities are available to people everywhere. </p>
+<br>
+<br>
+<img src="https://urantia.nyc/wp-content/uploads/2017/01/usgnyLOGOx108x54blues-1.png" alt="Image" class="thumbnail">
+<a href="https://urantia.nyc/">https://urantia.nyc/</a>
+<p>Our Mission  The Urantia Society of Greater New York (USGNY) is a local, New York area based organization with a global focus and outreach effort. In addition to numerous local dissemination projects, our society has translated The Urantia Book into several languages and makes available almost 30 different language versions of the text on this website.</p>
+<br>
+<br>
+<img src="https://thechristexperiment.org/wp-content/uploads/2022/02/Logo-Aquafine-600x140.png" alt="Image" class="thumbnail">
+<a href="https://thechristexperiment.org/">https://thechristexperiment.org/</a>
+<p>The Christ Experiment "Uplifting the spiritual conversation".</p>
+<br>
+<br>
+    </div>
+    <div class="content-container" id="Events_and_Communitys">
+        <h2>Events & Communitys</h2>
 <br>
 <br>
 <img src="https://scontent-lga3-2.xx.fbcdn.net/v/t1.6435-9/49666965_10215837801372100_1341839824419553280_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8631f5&_nc_ohc=jsCF_o9bqjYAX9Qh0ks&_nc_ht=scontent-lga3-2.xx&oh=00_AfDM-i2CDjhe0XIrcE023ZjufUuVfSfnivNHMp8_EZzBCw&oe=64F16413" alt="Image" class="thumbnail">
@@ -509,9 +643,9 @@ cascavel, Brazil</p>
 <p>Urantian Think Tank</p>
 <br>
 <br>
-</div>
-<div class="content-container">
-<h2>Material Projects & Products</h2>
+    </div>
+    <div class="content-container" id="Material_Projects_and_Products">
+        <h2>Material Projects & Products</h2>
 <br>
 <br>
 <img src="https://www.edentia.us/assets/images/edentia.jpg" alt="Image" class="thumbnail">
@@ -524,19 +658,30 @@ cascavel, Brazil</p>
 <p>Our purpose is the dissemination of The Urantia Book teachings and support of the Fifth Epochal Revelation of God to mankind. Profits from this project will be used to grow the business and product offerings as well as supporting the efforts of students, teachers, and leaders of this revelation both as individuals and organizations and in all countries, cultures, and religions. </p>
 <br>
 <br>
-        	</div>
-        <div class="content-container">
-            <h2>Submit Your Suggestions</h2>
-            <form action="URL_TO_HANDLE_SUBMISSIONS" method="post" enctype="multipart/form-data">
-                <label for="suggestion">Suggestion:</label>
-                <textarea id="suggestion" name="suggestion" rows="4"></textarea>
-                <br>
-                <label for="file-upload">Upload a file:</label>
-                <input type="file" id="file-upload" name="file-upload">
-                <br>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
     </div>
+    <div class="content-container" id="Submit_Your_Suggestions">
+        <h2>Submit Your Suggestions</h2>
+        <form action="URL_TO_HANDLE_SUBMISSIONS" method="post" enctype="multipart/form-data">
+            <label for="suggestion">Suggestion:</label>
+            <textarea id="suggestion" name="suggestion" rows="4"></textarea>
+            <br>
+            <label for="file-upload">Upload a file:</label>
+            <input type="file" id="file-upload" name="file-upload">
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            var targetId = this.getAttribute('href');
+            var targetElement = document.querySelector(targetId);
+            var navbarHeight = document.querySelector('.navbar').offsetHeight;
+            window.scrollTo(0, targetElement.offsetTop - navbarHeight);
+        });
+    });
+</script>
 </body>
 </html>
