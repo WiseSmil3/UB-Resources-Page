@@ -25,28 +25,33 @@
             margin-left: auto; /* Center the container */
             margin-right: auto;
         }
-        .content-container {
-            padding: 20px; /* Equal padding on all sides */
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-	h1 {
-            color: #333333;
-            margin-bottom: 20px; /* Spacing between the title and the suggestion box */
-        }
-        h2 {
-            color: #c4ffda;
-        }
-        a {
-            color: #ffdac4;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+       .content-container {
+  	    padding: 20px; /* Equal padding on all sides */
+   	    background-color: rgba(0, 0, 0, 0.5);
+   	    border-radius: 20px;
+   	    box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+   	    margin-bottom: 20px;
+   	    overflow: hidden;
+   	    text-align: center; /* Center the content inside the container */
+	}
+
+	.thumbnail {
+    	    height: 50px; /* You can adjust this value to your desired height */
+    	    width: auto; /* This will maintain the aspect ratio */
+    	    display: block; /* To remove any extra space around the image */
+    	    margin: 0 auto; /* Center the thumbnail images */
+	}
+
+	a {
+    	    color: #ffdac4;
+    	    text-decoration: none;
+    	    display: block; /* Display links as block elements to center them */
+	}
+
+	a:hover {
+    	    text-decoration: underline;
+	}
+
         label {
             display: block;
             vertical-align: top;
@@ -73,7 +78,7 @@
     <div class="container">
         <h1>The Urantia Book Resources</h1>
         <div class="content-container">
-        	<h2>Texts & Documentations</h2>
+        	<h2>Text & Documentations</h2>
 <br>
 <br>
 <img src="https://archive.urantiabook.org/ubsearch/gif/fellowship_logo_blue_with_light_blue_bgd_26x34.gif" alt="Image" class="thumbnail">
@@ -604,7 +609,7 @@ cascavel, Brazil</p>
         	</div>
         <div class="content-container">
             <h2>Submit Your Suggestions</h2>
-            <form action="URL_TO_HANDLE_SUBMISSIONS" method="post">
+            <form action="URL_TO_HANDLE_SUBMISSIONS" method="post" enctype="multipart/form-data">
                 <label for="suggestion">Suggestion:</label>
                 <textarea id="suggestion" name="suggestion" rows="4"></textarea>
                 <br>
