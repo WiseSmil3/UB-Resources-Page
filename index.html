@@ -27,10 +27,10 @@
             margin-right: auto;
         }
        .content-container {
-  	    padding: 20px; /* Equal padding on all sides */
+  	    padding: 15px; /* Equal padding on all sides */
    	    background-color: rgba(0, 0, 0, 0.5);
    	    border-radius: 20px;
-   	    box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+   	    box-shadow: 0 0 20px rgba(255, 255, 255, 100);
    	    margin-bottom: 20px;
    	    overflow: hidden;
    	    text-align: center; /* Center the content inside the container */
@@ -63,7 +63,7 @@
     <script>
         window.addEventListener('scroll', function() {
             // Calculate the zoom effect based on scroll position
-            var zoom = 100 + window.scrollY / 10;
+            var zoom = 100 + window.scrollY / 20;
             document.body.style.backgroundSize = zoom + '%';
         });
     </script>
